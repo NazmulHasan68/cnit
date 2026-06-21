@@ -1,0 +1,290 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Nexus IT - Demos</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top,#0f172a,#020617);
+  color:white;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:70px 20px;
+  background: linear-gradient(135deg,#2563eb,#7c3aed);
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+}
+
+header h1{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+header p{
+  opacity:.9;
+}
+
+/* CONTAINER */
+.container{
+  width:92%;
+  max-width:1300px;
+  margin:auto;
+  padding:50px 0;
+}
+
+/* CATEGORY TITLE */
+.category-title{
+  font-size:30px;
+  margin:60px 0 25px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+/* CARD */
+.card{
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:22px;
+  padding:25px;
+  position:relative;
+  overflow:hidden;
+  transition:.4s ease;
+  backdrop-filter: blur(16px);
+}
+
+/* glow effect */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(135deg,#2563eb,#7c3aed,#22c55e);
+  opacity:0;
+  filter: blur(20px);
+  transition:.4s;
+  z-index:-1;
+}
+
+.card:hover::before{
+  opacity:.6;
+}
+
+.card:hover{
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* ICON */
+.icon{
+  width:60px;
+  height:60px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(135deg,#2563eb,#7c3aed);
+  margin-bottom:15px;
+  font-size:22px;
+}
+
+/* TITLE */
+.card h3{
+  margin:10px 0;
+  font-size:20px;
+}
+
+/* BADGE */
+.badge{
+  display:inline-block;
+  margin-top:15px;
+  padding:8px 14px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:bold;
+  background:#f59e0b;
+  color:#000;
+}
+
+/* BUTTON */
+a.btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 16px;
+  background: linear-gradient(90deg,#2563eb,#7c3aed);
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+a.btn:hover{
+  opacity:.85;
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  header h1{font-size:28px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Creative Nexus IT</h1>
+  <p>Premium Demo Projects Portfolio</p>
+</header>
+
+<div class="container" id="app"></div>
+
+<footer>
+© 2026 Creative Nexus IT — All Rights Reserved
+</footer>
+
+<script>
+
+// =========================
+// DATA (EXPANDED)
+// =========================
+const data = [
+  {
+    title:"E-Commerce / POS",
+    icon:"fa-cart-shopping",
+    projects:[
+      {name:"POS System", link:"https://nexus-shop-pos-demo.vercel.app/login"},
+      {name:"Garments ERP", link:"https://nexus-garments-system-demo.vercel.app/login"},
+      {name:"Pharmacy System", link:"https://nexus-pharmacy-system-demo-mpr2nt15x.vercel.app/"},
+      {name:"Electronics Store", link:"https://nexus-electronics-demo.vercel.app/"},
+      {name:"Fashion Inventory", link:"https://nexus-fashion-admin-demo.vercel.app/"},
+      {name:"Super Shop ERP", link:null},
+      {name:"Multi Vendor Store", link:null}
+    ]
+  },
+
+  {
+    title:"Healthcare & Medical",
+    icon:"fa-hospital",
+    projects:[
+      {name:"Hospital System", link:"https://nexus-hospital-demo.vercel.app/"},
+      {name:"Pharmacy System", link:"https://nexus-pharmacy-system-demo-mpr2nt15x.vercel.app/"},
+      {name:"Clinic Management", link:null},
+      {name:"Doctor Appointment App", link:null}
+    ]
+  },
+
+  {
+    title:"Education / LMS",
+    icon:"fa-school",
+    projects:[
+      {name:"School Management", link:"https://nexus-school-demo.vercel.app/"},
+      {name:"Coaching Center", link:"https://nexus-coaching-center-demo.vercel.app/"},
+      {name:"School ERP", link:"https://nexus-school-management.vercel.app/"},
+      {name:"Online Exam System", link:null},
+      {name:"E-Learning Platform", link:null}
+    ]
+  },
+
+  {
+    title:"Legal / Corporate",
+    icon:"fa-scale-balanced",
+    projects:[
+      {name:"Law Firm Website", link:"https://nexus-law-firm-demo.vercel.app/"},
+      {name:"Corporate CRM", link:null},
+      {name:"Client Management System", link:null}
+    ]
+  },
+
+  {
+    title:"Real Estate",
+    icon:"fa-house",
+    projects:[
+      {name:"Real Estate Demo", link:"https://real-estate-demo-one-pi.vercel.app/"},
+      {name:"Real Estate CRM", link:"https://nexus-real-estate-crm-demo.vercel.app/login"},
+      {name:"Property Listing Portal", link:null},
+      {name:"Agent Dashboard", link:null}
+    ]
+  },
+
+  {
+    title:"Travel & Fitness",
+    icon:"fa-plane",
+    projects:[
+      {name:"Travel Agency", link:"https://travel-agency-demo-nine.vercel.app/"},
+      {name:"Gym System", link:"https://nexus-gym-demo.vercel.app/"},
+      {name:"Tour Booking System", link:null},
+      {name:"Fitness Tracker App", link:null}
+    ]
+  },
+
+  {
+    title:"Finance / SaaS",
+    icon:"fa-chart-line",
+    projects:[
+      {name:"Invoice System", link:null},
+      {name:"Expense Tracker", link:null},
+      {name:"Accounting Dashboard", link:null},
+      {name:"Analytics Platform", link:null}
+    ]
+  }
+];
+
+
+// =========================
+// RENDER (MAP)
+// =========================
+const app = document.getElementById("app");
+
+app.innerHTML = data.map(cat => `
+  <div>
+    <h2 class="category-title">
+      <i class="fas ${cat.icon}"></i>
+      ${cat.title}
+    </h2>
+
+    <div class="grid">
+      ${cat.projects.map(p => `
+        <div class="card">
+          <div class="icon"><i class="fas fa-cube"></i></div>
+          <h3>${p.name}</h3>
+
+          ${
+            p.link
+            ? `<a class="btn" href="${p.link}" target="_blank">Live Demo</a>`
+            : `<span class="badge">Coming Soon</span>`
+          }
+        </div>
+      `).join("")}
+    </div>
+  </div>
+`).join("");
+
+</script>
+
+</body>
+</html>
+```
